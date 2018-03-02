@@ -1,2 +1,2 @@
 #!/bin/bash
-build -t "local/sWevView" .
+docker build -t "local/swebview" .
