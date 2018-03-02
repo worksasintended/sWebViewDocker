@@ -15,7 +15,7 @@ RUN cd /tmp && \
     sudo -u yaourt tar -xvzf yaourt.tar.gz &&\
     cd yaourt &&\
     yes | sudo -u yaourt makepkg -si &&\
-    cd .. && \
+    cd &&\
     echo 'EXPORT=2' >> /etc/yaourtrc && \
     sudo -u yaourt yaourt --version &&\
     rm -rf /tmp/*
