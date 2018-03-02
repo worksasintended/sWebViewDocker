@@ -18,10 +18,9 @@ RUN cd /tmp && \
     cd .. && \
     echo 'EXPORT=2' >> /etc/yaourtrc && \
     sudo -u yaourt yaourt --version &&\
-    rm -rf /tmp/ &&\
-    rm -rf /tmp/**
+    rm -rf /tmp/*
 RUN echo 'MAKEFLAGS="-j16"' >> /etc/makepkg.conf
-RUN sudo -u yaourt yaourt -S --noconfirm slurm 
+RUN sudo -u yaourt yaourt -S --noconfirm munge
 RUN sudo -u yaourt yaourt -S --noconfirm slurm-llnl
 ADD init.sh /
 ENTRYPOINT [/init.sh]
