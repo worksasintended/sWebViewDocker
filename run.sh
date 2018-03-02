@@ -8,4 +8,4 @@ docker run \
 	-v $MUNGEKEY:/etc/munge/munge.key \
 	-v $sWebView:/swebView \
 	-p 8080:8080 \
-	local/sWebView
+	local/swebview
