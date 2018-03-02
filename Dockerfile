@@ -2,20 +2,24 @@ FROM base/archlinux
 MAINTAINER Marc Marschall marc@marschall.net
 RUN pacman --noconfirm -Syyu
 RUN pacman --noconfirm -S wt boost cmake make gcc git sudo 
-RUN chmod 640 /etc/sudoers && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chmod 440 /etc/sudoers && useradd -m -p123123 -G wheel yaourt
-RUN sudo -u yaourt rm -rf /tmp/package-query && \
-    sudo -u yaourt rm -rf /tmp/yaourt && \
-    cd /tmp && \
-    sudo -u yaourt git clone https://aur.archlinux.org/package-query.git && \
-    cd /tmp/package-query && \
-    yes | sudo -u yaourt makepkg -si && \
-    cd .. && \
-    sudo -u yaourt git clone https://aur.archlinux.org/yaourt.git && \
-    cd /tmp/yaourt && \
-    yes | sudo -u yaourt makepkg -si && \
+RUN chmod 640 /etc/sudoers &&\
+	 echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers &&\
+	 chmod 440 /etc/sudoers &&\
+	 useradd -m -p123123 -G wheel yaourt
+RUN cd /tmp && \
+    sudo -u yaourt curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/package-query.tar.gz &&\
+    sudo -u yaourt tar -xvzf package-query.tar.gz &&\
+    cd package-query &&\
+    yes | sudo -u yaourt makepkg -si &&\
+    sudo -u yaourt curl -O https://aur.archlinux.org/cgit/aur.git/snapshot/yaourt.tar.gz &&\
+    sudo -u yaourt tar -xvzf yaourt.tar.gz &&\
+    cd yaourt &&\
+    yes | sudo -u yaourt makepkg -si &&\
     cd .. && \
     echo 'EXPORT=2' >> /etc/yaourtrc && \
-    sudo -u yaourt yaourt --version
+    sudo -u yaourt yaourt --version &&\
+    rm -rf /tmp/ &&\
+    rm -rf /tmp/**
 RUN echo 'MAKEFLAGS="-j16"' >> /etc/makepkg.conf
 RUN sudo -u yaourt yaourt -S --noconfirm slurm 
 RUN sudo -u yaourt yaourt -S --noconfirm slurm-llnl
