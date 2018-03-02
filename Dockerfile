@@ -24,5 +24,5 @@ RUN sudo -u yaourt yaourt -S --noconfirm munge
 RUN sudo -u yaourt yaourt -S --noconfirm slurm-llnl
 ADD init.sh /init.sh
 EXPOSE 8080
-CMD ["/init.sh]
+CMD ["/init.sh"]
 
