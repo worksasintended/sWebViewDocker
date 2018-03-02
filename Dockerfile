@@ -1,7 +1,7 @@
 FROM base/archlinux
 MAINTAINER Marc Marschall marc@marschall.net
 RUN pacman --noconfirm -Syyu
-RUN pacman --noconfirm -S wt boost cmake make gcc git sudo base-devel 
+RUN pacman --noconfirm -S wt boost cmake make gcc git sudo base-devel libgl 
 RUN chmod 640 /etc/sudoers &&\
 	 echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers &&\
 	 chmod 440 /etc/sudoers &&\
@@ -22,5 +22,7 @@ RUN cd /tmp && \
 RUN echo 'MAKEFLAGS="-j16"' >> /etc/makepkg.conf
 RUN sudo -u yaourt yaourt -S --noconfirm munge
 RUN sudo -u yaourt yaourt -S --noconfirm slurm-llnl
-ADD init.sh /
-ENTRYPOINT [/init.sh]
+ADD init.sh /init.sh
+EXPOSE 8080
+CMD ["/init.sh]
+
