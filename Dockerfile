@@ -1,7 +1,7 @@
 FROM base/archlinux
 MAINTAINER Marc Marschall marc@marschall.net
 RUN pacman --noconfirm -Syyu
-RUN pacman --noconfirm -S wt boost cmake make gcc git sudo 
+RUN pacman --noconfirm -S wt boost cmake make gcc git sudo base-devel 
 RUN chmod 640 /etc/sudoers &&\
 	 echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers &&\
 	 chmod 440 /etc/sudoers &&\
