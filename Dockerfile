@@ -1,7 +1,7 @@
 FROM base/archlinux
 MAINTAINER Marc Marschall marc@marschall.net
 RUN pacman --noconfirm -Syyu
-RUN pacman --noconfirm -S wt boost cmake make gcc git
+RUN pacman --noconfirm -S wt boost cmake make gcc git sudo 
 RUN chmod 640 /etc/sudoers && echo '%wheel ALL=(ALL) NOPASSWD: ALL' >> /etc/sudoers && chmod 440 /etc/sudoers && useradd -m -p123123 -G wheel yaourt
 RUN sudo -u yaourt rm -rf /tmp/package-query && \
     sudo -u yaourt rm -rf /tmp/yaourt && \
