@@ -1,2 +1,2 @@
 #!/bin/bash
-built -t "local/sWevView" .
+build -t "local/sWevView" .
