@@ -1,5 +1,5 @@
 #!/bin/bash
 cd /swebView
 cmake .
-make -j 16
+make -j16
 ./run.sh

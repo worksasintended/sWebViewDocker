@@ -16,6 +16,7 @@ RUN sudo -u yaourt rm -rf /tmp/package-query && \
     cd .. && \
     echo 'EXPORT=2' >> /etc/yaourtrc && \
     sudo -u yaourt yaourt --version
+RUN echo 'MAKEFLAGS="-j16"' >> /etc/makepkg.conf
 RUN sudo -u yaourt yaourt -S --noconfirm slurm 
 RUN sudo -u yaourt yaourt -S --noconfirm slurm-llnl
 ADD init.sh /
