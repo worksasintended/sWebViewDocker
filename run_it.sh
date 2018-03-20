@@ -1,6 +1,6 @@
 #!/bin/bash
 SLURMCONFIG="/etc/slurm-llnl/slurm.conf"
-MUNGEKEY="/etc/munge/munge.key"
+MUNGEKEY="$PWD/munge.key"
 sWebView="`pwd`/sWebView"
 docker run \
 	-it \
