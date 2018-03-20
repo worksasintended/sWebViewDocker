@@ -10,3 +10,4 @@ docker run \
 	-v $sWebView:/sWebView \
 	-p 8080:8080 \
 	local/swebview bash
+docker rm slurmwebview
